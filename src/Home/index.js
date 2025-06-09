@@ -82,29 +82,31 @@ const Home = () => {
     setActiveCategoryId(menuCategoryId)
 
   const renderTabMenuList = () =>
-    response.map(eachCategory => {
-      const onClickHandler = () =>
-        onUpdateActiveCategoryIdx(eachCategory.menuCategoryId)
+  response.map(eachCategory => {
+    const onClickHandler = () =>
+      onUpdateActiveCategoryIdx(eachCategory.menuCategoryId)
 
-      return (
-        <li
-          className={`each-tab-item ${
-            eachCategory.menuCategoryId === activeCategoryId
-              ? 'active-tab-item'
-              : ''
-          }`}
-          key={eachCategory.menuCategoryId}
+    return (
+      <li
+        className={`each-tab-item ${
+          eachCategory.menuCategoryId === activeCategoryId
+            ? 'active-tab-item'
+            : ''
+        }`}
+        key={eachCategory.menuCategoryId}
+      >
+        <button
+          type="button"
+          className="mt-0 mb-0 ms-2 me-2 tab-category-button"
           onClick={onClickHandler}
         >
-          <button
-            type="button"
-            className="mt-0 mb-0 ms-2 me-2 tab-category-button"
-          >
-            {eachCategory.menuCategory}
-          </button>
-        </li>
-      )
-    })
+          {/* 👇 Ensure full category name is directly rendered here */}
+          {eachCategory.menuCategory}
+        </button>
+      </li>
+    )
+  })
+
 
   const renderDishes = () => {
     const {categoryDishes} = response.find(
